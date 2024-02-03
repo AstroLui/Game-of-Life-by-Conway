@@ -1,5 +1,6 @@
 import pygame
-from Button import *
+from Widgets.Button import *
+from Widgets.Text import *
 
 #Iniciamos Pygame
 pygame.init()
@@ -22,12 +23,12 @@ font_other = pygame.font.Font('Fonts/Sixtyfour.TTF', 20)
 font_widgets = pygame.font.Font('Fonts/Sixtyfour.TTF', 15)
 
 #Funciones
-def draw_text(text, font, text_color, x, y):
-    img = font.render(text, True, text_color)
-    screen.blit(img, (x, y))
 
 #Widgets
 Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets, 6)
+TitleCenter = Text('Juego de la Vida', font, '#000000', 75, 150)
+SubTitle = Text('de Conway', font_other, '#000000', 90, 190)
+StartText = Text('Presione SPACE para comenzar', font_other, '#000000', 110, 340)
 
 #Game Variables
 game_option = False
@@ -41,9 +42,9 @@ while running:
     elif game_start == True:
         pass
     else:
-        draw_text("Juego de la Vida",font, '#000000', 75, 150)
-        draw_text("de Conway", font_other, '#000000', 90, 190)
-        draw_text('Presione SPACE para comenzar', font_other, '#000000', 110, 340)
+        TitleCenter.Draw(screen)
+        SubTitle.Draw(screen)
+        StartText.Draw(screen)
         Button_Option.draw(screen)
     
     # Event Handler
