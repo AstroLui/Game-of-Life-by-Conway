@@ -27,7 +27,7 @@ def draw_text(text, font, text_color, x, y):
     screen.blit(img, (x, y))
 
 #Widgets
-Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets)
+Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets, 6)
 
 #Game Variables
 game_option = False
