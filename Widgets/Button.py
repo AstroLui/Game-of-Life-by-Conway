@@ -1,7 +1,7 @@
 import pygame
 
 class Button():
-    def __init__(self, text, width, height, pos, font, elevation):
+    def __init__(self, text: str, width: int, height: int, pos: int, font: pygame.font.FontType, elevation: int):
         #Core Attribute
         self.pressed = False
         self.evelation = elevation
