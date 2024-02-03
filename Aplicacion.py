@@ -32,9 +32,9 @@ Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets)
 #Game Loop
 while running: 
     screen.fill('#DCDDD8')
-    draw_text("Juego de la Vida",font, (0,0,0), 75, 150)
-    draw_text("de Conway", font_other, (0, 0, 0), 90, 190)
-    draw_text('Presione SPACE para comenzar', font_other, (0, 0, 0), 110, 340)
+    draw_text("Juego de la Vida",font, '#000000', 75, 150)
+    draw_text("de Conway", font_other, '#000000', 90, 190)
+    draw_text('Presione SPACE para comenzar', font_other, '#000000', 110, 340)
     Button_Option.draw(screen)
     # Event Handler
     for event in pygame.event.get():
