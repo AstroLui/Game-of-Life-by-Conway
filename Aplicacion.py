@@ -1,4 +1,6 @@
 import pygame
+import numpy as np
+import time
 from Widgets.Button import *
 from Widgets.Text import *
 from Widgets.ButtonImage import *
@@ -31,13 +33,15 @@ Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets, 6)
 TitleCenter = Text('Juego de la Vida', font, '#000000', 75, 150)
 SubTitle = Text('de Conway', font_other, '#000000', 90, 190)
 StartText = Text('Presione SPACE para comenzar', font_other, '#000000', 110, 340)
-
     #Widgets de las Opciones
 Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6)
 
 #Game Variables
 game_option = False
 game_start = False
+ncX, ncY = 50, 50
+dimCW = SCREEN_WIDTH / ncX
+dimCH = SCREEN_HEIGHT / ncY
 
 #Game Loop
 while running: 
@@ -49,6 +53,16 @@ while running:
             Button_Back.pressed = False
         pass
     elif game_start == True:
+        for y in range(4, ncX-10):
+            for x in range(2, ncY-2):
+
+                poly = [((x)     * dimCW, y       * dimCH),  
+                        ((x + 1) * dimCW, y       * dimCH), 
+                        ((x + 1) * dimCW, (y + 1) * dimCH), 
+                        ((x)     * dimCW, (y + 1) * dimCH)]
+                
+                pygame.draw.polygon(screen, "#000000", poly, 1)
+        
         pass
     else:
         TitleCenter.Draw(screen)
