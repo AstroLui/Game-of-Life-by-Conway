@@ -24,6 +24,7 @@ font = pygame.font.Font('Fonts/Sixtyfour.TTF', 40)
 font_other = pygame.font.Font('Fonts/Sixtyfour.TTF', 20)
 font_widgets = pygame.font.Font('Fonts/Sixtyfour.TTF', 15)
 font_textplano = pygame.font.Font('Fonts/8-BIT WONDER.TTF', 18)
+font_copy = pygame.font.Font('Fonts/Pixelinter.ttf', 16)
 
 #Widgets
     #Widgets de la Pantalla Principal
@@ -31,6 +32,7 @@ Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets, 6)
 TitleCenter = Text('Juego de la Vida', font, '#000000', 75, 150)
 SubTitle = Text('de Conway', font_other, '#000000', 90, 190)
 StartText = Text('Presione SPACE para comenzar', font_other, '#000000', 110, 340)
+CopyText = Text('(C) 2024, Astrofamily, LTD. All Rights Reserveds', font_copy, '#000000', 395, 560)
     #Widgets de las Opciones
 Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6)
     #Widgets de Inicio del Juego
@@ -43,27 +45,35 @@ game_paused = False
 ncX, ncY = 50, 50
 dimCW = SCREEN_WIDTH / ncX
 dimCH = SCREEN_HEIGHT / ncY
-gameState = np.zeros((ncX, ncY))
-gameState[21, 21] = 1
-gameState[22, 22] = 1
-gameState[22, 23] = 1
-gameState[21, 23] = 1
-gameState[20, 23] = 1
 
 #Game Loop
 while running: 
-    newGameState = np.copy(gameState)
     screen.fill('#DCDDD8')
 
-    if Button_Option.pressed == True:
+    if Button_Option.pressed == False and game_start == False:
+        gameState = np.zeros((ncX, ncY))
+        gameState[21, 21] = 1
+        gameState[22, 22] = 1
+        gameState[22, 23] = 1
+        gameState[21, 23] = 1
+        gameState[20, 23] = 1
+        newGameState = np.copy(gameState)
+        TitleCenter.Draw(screen)
+        SubTitle.Draw(screen)
+        StartText.Draw(screen)
+        Button_Option.draw(screen)
+        CopyText.Draw(screen)
+        pass
+
+    elif Button_Option.pressed == True:
         Button_Back.draw(screen)
         if Button_Back.pressed == True: 
             Button_Option.pressed = False
             Button_Back.pressed = False
         pass
+
     elif game_start == True:
         time.sleep(0.045)
-        
         Button_Paused.draw(screen)
         Button_Exit.draw(screen)
         if Button_Exit.checked_click() == True:
@@ -107,11 +117,6 @@ while running:
                 
         gameState = np.copy(newGameState)
         pass
-    else:
-        TitleCenter.Draw(screen)
-        SubTitle.Draw(screen)
-        StartText.Draw(screen)
-        Button_Option.draw(screen)
 
     # Event Handler
     for event in pygame.event.get():
