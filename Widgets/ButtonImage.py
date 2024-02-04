@@ -3,7 +3,7 @@ import pygame
 class ButtonImg():
     def __init__(self, width: int, height: int, pos: int, image: pygame.surface.SurfaceType, scale: int, elevation: int):
         #Core Actribute
-        
+
         self.pressed = False
         self.elevation = elevation
         self.dinamyc_elevation = elevation
