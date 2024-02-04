@@ -40,6 +40,7 @@ class Button():
             if pygame.mouse.get_pressed()[0]:
                 self.dinamyc_elevation = 0
                 self.pressed = True
+                return True
             else:
                 self.dinamyc_elevation = self.evelation
                 if self.pressed == True: 
@@ -48,3 +49,4 @@ class Button():
         else:
             self.dinamyc_elevation = self.evelation
             self.top_color = 'white'
+            
