@@ -14,7 +14,6 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 running = True
 
-
 #Name Window
 pygame.display.set_caption('Game of Life')
 
@@ -22,6 +21,7 @@ pygame.display.set_caption('Game of Life')
 font = pygame.font.Font('Fonts/Sixtyfour.TTF', 40)
 font_other = pygame.font.Font('Fonts/Sixtyfour.TTF', 20)
 font_widgets = pygame.font.Font('Fonts/Sixtyfour.TTF', 15)
+font_textplano = pygame.font.Font('Fonts/8-BIT WONDER.TTF', 18)
 
 #Funciones
 
@@ -33,10 +33,8 @@ SubTitle = Text('de Conway', font_other, '#000000', 90, 190)
 StartText = Text('Presione SPACE para comenzar', font_other, '#000000', 110, 340)
 
     #Widgets de las Opciones
-FlechaIzq = pygame.image.load('Image/FlechaIzq.png').convert_alpha()
-Button_FlechaIzq = ButtonImg(50, 50, (20, 20),FlechaIzq, 0.07, 6)
-FlechaDer = pygame.image.load('Image/FlechaDer.png').convert_alpha()
-Button_FlechaDer = ButtonImg(50, 50, (90, 20), FlechaDer, 0.07, 6)
+Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6)
+
 #Game Variables
 game_option = False
 game_start = False
@@ -45,8 +43,10 @@ game_start = False
 while running: 
     screen.fill('#DCDDD8')
     if Button_Option.pressed == True:
-        Button_FlechaIzq.draw(screen)
-        Button_FlechaDer.draw(screen)
+        Button_Back.draw(screen)
+        if Button_Back.pressed == True: 
+            Button_Option.pressed = False
+            Button_Back.pressed = False
         pass
     elif game_start == True:
         pass
