@@ -47,6 +47,11 @@ ncX, ncY = 50, 50
 dimCW = SCREEN_WIDTH / ncX
 dimCH = SCREEN_HEIGHT / ncY
 
+def texto():
+     if game_paused:
+        return Button('Continuar', 150, 50, (315, 520), font_widgets, 6)
+     else:
+         return Button('Pausar', 125, 50, (315, 520), font_widgets, 6)
 #Game Loop
 while running: 
     # Color de Background
@@ -96,6 +101,12 @@ while running:
         # Condicion para salir al Main Menu
         if Button_Exit.checked_click() == True:
             game_start = False
+        if Button_Paused.pressed: 
+            if game_paused==False:
+                game_paused = True
+            elif game_paused:
+                game_paused = False
+            Button_Paused = texto() 
         # Bucle que escucha los eventos de click del 
         # mouse en la Pantalla
         for event in pygame.event.get():
