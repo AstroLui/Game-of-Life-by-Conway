@@ -24,7 +24,7 @@ font = pygame.font.Font('Fonts/Sixtyfour.TTF', 40)
 font_other = pygame.font.Font('Fonts/Sixtyfour.TTF', 20)
 font_widgets = pygame.font.Font('Fonts/Sixtyfour.TTF', 15)
 font_textplano = pygame.font.Font('Fonts/8-BIT WONDER.TTF', 18)
-font_copy = pygame.font.Font('Fonts/Pixelinter.ttf', 16)
+font_copy = pygame.font.Font('Fonts/Pixelinter.ttf', 14)
 
 #Widgets
     #Widgets de la Pantalla Principal
@@ -32,7 +32,8 @@ Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets, 6)
 TitleCenter = Text('Juego de la Vida', font, '#000000', 75, 150)
 SubTitle = Text('de Conway', font_other, '#000000', 90, 190)
 StartText = Text('Presione SPACE para comenzar', font_other, '#000000', 110, 340)
-CopyText = Text('(C) 2024, Astrofamily, LTD. All Rights Reserveds', font_copy, '#000000', 395, 560)
+CopyText = Text('Copyrights (C) 2024, Astrofamily. All Rights Reserveds', font_copy, '#000000', 415, 550)
+CopyText_By = Text('By AstroLui and Moi', font_copy, '#000000', 650, 570)
     #Widgets de las Opciones
 Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6)
     #Widgets de Inicio del Juego
@@ -70,6 +71,7 @@ while running:
         StartText.Draw(screen)
         Button_Option.draw(screen)
         CopyText.Draw(screen)
+        CopyText_By.Draw(screen)
         pass
 
     # Menu Opciones
