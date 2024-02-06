@@ -36,12 +36,16 @@ CopyText = Text('Copyrights (C) 2024, Astrofamily. All Rights Reserveds', font_c
 CopyText_By = Text('By AstroLui and Moi', font_copy, '#000000', 650, 570)
     #Widgets de las Opciones
 Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6,)
-
+Text_ColorCell = Text('Cambiar Color de la Celula', font_textplano, '#000000', 30, 100)
+Button_Classic = Button('Clásico', 125, 50, (50, 150), font_widgets, 6)
+Button_Red = Button('Rojo', 125, 50, (190, 150), font_widgets, 6)
+Button_Azul = Button('Azul', 125, 50, (330, 150), font_widgets, 6)
+Button_Verde = Button('Verde', 125, 50, (470, 150), font_widgets, 6)
+Button_Astro = Button('Astro', 125, 50, (610, 150), font_widgets, 6)
     #Widgets de Inicio del Juego
 Button_Exit = Button('Atras', 100, 50, (20, 520), font_widgets, 6,)
 Button_Paused = Button('Pausar', 125, 50, (315, 520), font_widgets, 6,)
-Button_Classic = Button('Clásico', 125, 50, (315, 520), font_widgets, 6,)
-Button_Red = Button('Rojo', 125, 50, (315, 400), font_widgets, 6,)
+
 
 def texto():
      if game_paused:
@@ -49,11 +53,17 @@ def texto():
      else:
          return Button('Pausar', 125, 50, (315, 520), font_widgets, 6,)
 
-def color():
+def Colors():
     if game_classic:
         return '#000000'
     elif game_red:
         return "#f20c0c"
+    elif game_azul:
+        return '#5754A8'
+    elif game_verde:
+        return '#A5CC1B'
+    elif game_astro: 
+        return '#54526A'
     else:
         return '#000000'
 
@@ -61,8 +71,14 @@ def color():
 game_option = False
 game_start = False
 game_paused = False
+    #Variables de Colores
 game_classic = False
 game_red = False
+game_azul = False
+game_verde = False
+game_astro = False
+game_secret = False
+
 ncX, ncY = 50, 50
 dimCW = SCREEN_WIDTH / ncX
 dimCH = SCREEN_HEIGHT / ncY
@@ -71,7 +87,8 @@ dimCH = SCREEN_HEIGHT / ncY
 while running: 
     # Color de Background
     screen.fill('#DCDDD8')
-    
+    if game_astro == True: 
+        screen.fill('#9EABCF')
     # Event Handler
     # Bucle que escucha el evento de QUIT 
     # de la ventana y del SPACE para iniciar el juego
@@ -89,10 +106,39 @@ while running:
             if Button_Classic.Click():
                 game_classic = True
                 game_red =  False
+                game_azul = False
+                game_verde = False
+                game_astro = False
+                game_secret = False
             if Button_Red.Click():
                 game_red = True
                 game_classic = False
-            
+                game_azul = False
+                game_verde=  False
+                game_astro = False
+                game_secret = False
+            if Button_Azul.Click():
+                game_red = False
+                game_classic = False
+                game_azul = True
+                game_verde = False
+                game_astro = False
+                game_secret = False
+            if Button_Verde.Click():
+                game_red = False
+                game_classic = False
+                game_azul = False
+                game_verde = True
+                game_astro = False
+                game_secret = False
+            if Button_Astro.Click():
+                game_red = False
+                game_classic = False
+                game_azul = False
+                game_verde = False
+                game_astro = True
+                game_secret = True
+
     # Main Menu     
     if game_option == False and game_start == False:
         # Estados de la Celulas. Vivos = 1, Muertos = 0
@@ -119,9 +165,13 @@ while running:
     if game_option == True:
         # Dibujamos el Boton de Atras en 
         # el menu de opciones
+        Text_ColorCell.Draw(screen)
         Button_Classic.draw(screen)
         Button_Back.draw(screen)
         Button_Red.draw(screen)
+        Button_Azul.draw(screen)
+        Button_Verde.draw(screen)
+        Button_Astro.draw(screen)
         # Codicion para regresar al Main Menu
         pass
 
@@ -146,7 +196,10 @@ while running:
                 # Determinamos la celdas
                 celX, celY = int(np.floor(posX / dimCW)), int(np.floor(posY / dimCH)) 
                 # Cambiamos el estado de la cedula
-                newGameState[celX, celY] = 1
+                try: 
+                    newGameState[celX, celY] = 1
+                except(IndexError):
+                    pass
         
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if Button_Exit.Click():
@@ -191,7 +244,7 @@ while running:
                 
                 # Dibujamos la celda
                 if newGameState[x, y] == 0:
-                    Tcolor = color() 
+                    Tcolor = Colors() 
                     pygame.draw.polygon(screen, '#606060', poly, 1)
                 else:
                     pygame.draw.polygon(screen, Tcolor, poly, 0)
