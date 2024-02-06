@@ -18,6 +18,23 @@ running = True
 
 #Name Window
 pygame.display.set_caption('Game of Life')
+ListT = {0: 'DEFAULT_TEMA', 
+        1:'ASTRO_TEMA'}
+TEMA = {"DEFAULT_TEMA":{
+            'Background': '#DCDDD8',
+            'Fuente': '#000000',
+            'TopColor': '#FFFFFF',
+            'BottonColor': '#606060',
+            'TextColor': '#000000'
+        },
+        'ASTRO_TEMA':{
+            'Background': '#9EABCF',
+            'Fuente': '#34344D',
+            'TopColor': '#7496C1',
+            'BottonColor': '#5754A8',
+            'TextColor': '#34344D'
+        }
+    }
 
 #Font
 font = pygame.font.Font('Fonts/Sixtyfour.TTF', 40)
@@ -28,19 +45,19 @@ font_copy = pygame.font.Font('Fonts/Pixelinter.ttf', 14)
 
 #Widgets
     #Widgets de la Pantalla Principal
-Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets, 6)
-TitleCenter = Text('Juego de la Vida', font, '#000000', 75, 150)
-SubTitle = Text('de Conway', font_other, '#000000', 90, 190)
-StartText = Text('Presione SPACE para comenzar', font_other, '#000000', 110, 340)
-CopyText = Text('Copyrights (C) 2024, Astrofamily. All Rights Reserveds', font_copy, '#000000', 415, 550)
-CopyText_By = Text('By AstroLui and Moi', font_copy, '#000000', 650, 570)
+Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets, 6, TEMA[ListT[1]]['TextColor'], TEMA[ListT[1]]['TopColor'], TEMA[ListT[1]]['BottonColor'])
+TitleCenter = Text('Juego de la Vida', font, TEMA[ListT[1]]['Fuente'], 75, 150)
+SubTitle = Text('de Conway', font_other, TEMA[ListT[1]]['Fuente'], 90, 190)
+StartText = Text('Presione SPACE para comenzar', font_other, TEMA[ListT[1]]['Fuente'], 110, 340)
+CopyText = Text('Copyrights (C) 2024, Astrofamily. All Rights Reserveds', font_copy, TEMA[ListT[1]]['Fuente'], 415, 550)
+CopyText_By = Text('By AstroLui and Moi', font_copy, TEMA[ListT[1]]['Fuente'], 650, 570)
     #Widgets de las Opciones
-Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6)
+Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6, TEMA[ListT[1]]['TextColor'], TEMA[ListT[1]]['TopColor'], TEMA[ListT[1]]['BottonColor'])
     #Widgets de Inicio del Juego
-Button_Exit = Button('Atras', 100, 50, (20, 520), font_widgets, 6)
-Button_Paused = Button('Pausar', 125, 50, (315, 520), font_widgets, 6)
-Button_Classic = Button('Clásico', 125, 50, (315, 520), font_widgets, 6)
-Button_Red = Button('Rojo', 125, 50, (315, 400), font_widgets, 6)
+Button_Exit = Button('Atras', 100, 50, (20, 520), font_widgets, 6, TEMA[ListT[1]]['TextColor'], TEMA[ListT[1]]['TopColor'], TEMA[ListT[1]]['BottonColor'])
+Button_Paused = Button('Pausar', 125, 50, (315, 520), font_widgets, 6, TEMA[ListT[1]]['TextColor'], TEMA[ListT[1]]['TopColor'], TEMA[ListT[1]]['BottonColor'])
+Button_Classic = Button('Clásico', 125, 50, (315, 520), font_widgets, 6, TEMA[ListT[1]]['TextColor'], TEMA[ListT[1]]['TopColor'], TEMA[ListT[1]]['BottonColor'])
+Button_Red = Button('Rojo', 125, 50, (315, 400), font_widgets, 6, TEMA[ListT[1]]['TextColor'], TEMA[ListT[1]]['TopColor'], TEMA[ListT[1]]['BottonColor'])
 #Game Variables
 game_option = False
 game_start = False
@@ -53,9 +70,9 @@ dimCH = SCREEN_HEIGHT / ncY
 
 def texto():
      if game_paused:
-        return Button('Continuar', 150, 50, (315, 520), font_widgets, 6)
+        return Button('Continuar', 150, 50, (315, 520), font_widgets, 6, TEMA[ListT[1]]['TextColor'], TEMA[ListT[1]]['TopColor'], TEMA[ListT[1]]['BottonColor'])
      else:
-         return Button('Pausar', 125, 50, (315, 520), font_widgets, 6)
+         return Button('Pausar', 125, 50, (315, 520), font_widgets, 6, TEMA[ListT[1]]['TextColor'], TEMA[ListT[1]]['TopColor'], TEMA[ListT[1]]['BottonColor'])
 
 def color():
     if game_classic:
@@ -67,7 +84,7 @@ def color():
 #Game Loop
 while running: 
     # Color de Background
-    screen.fill('#DCDDD8')
+    screen.fill(TEMA[ListT[1]]['Background'])
     # Event Handler
     # Bucle que escucha el evento de QUIT 
     # de la ventana y del SPACE para iniciar el juego

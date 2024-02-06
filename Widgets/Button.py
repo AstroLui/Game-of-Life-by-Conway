@@ -1,7 +1,8 @@
 import pygame
 
 class Button():
-    def __init__(self, text: str, width: int, height: int, pos: int, font: pygame.font.FontType, elevation: int):
+    def __init__(self, text: str, width: int, height: int, pos: int, font: pygame.font.FontType, elevation: int, textcolor: str, topcolor: str, bottomcolor: str):
+        self.oldTopColor = topcolor
         #Core Attribute
         self.pressed = False
         self.evelation = elevation
@@ -10,14 +11,14 @@ class Button():
 
         #top rectagular
         self.top_rect = pygame.Rect(pos, (width, height))
-        self.top_color = '#FFFFFF'
+        self.top_color = self.oldTopColor
 
         #bottom rectangular
         self.bottom_rect = pygame.Rect(pos, (width, elevation))
-        self.bottom_color = '#606060'
+        self.bottom_color = bottomcolor
 
         #Text
-        self.text_surf = font.render(text, True, '#000000')
+        self.text_surf = font.render(text, True, textcolor)
         self.text_rect = self.text_surf.get_rect(center=self.top_rect.center)
     
     def draw(self, screen): 
@@ -46,7 +47,7 @@ class Button():
                     self.pressed = False
         else:
             self.dinamyc_elevation = self.evelation
-            self.top_color = 'white'
+            self.top_color = self.oldTopColor
     
     def Click(self):
         moused_pos = pygame.mouse.get_pos()
