@@ -114,8 +114,10 @@ while running:
 
         if Button_Classic.pressed:
             game_classic = True
+            game_red =  False
         if Button_Red.pressed:
             game_red = True
+            game_classic = False
         # Codicion para regresar al Main Menu
         pass
 
