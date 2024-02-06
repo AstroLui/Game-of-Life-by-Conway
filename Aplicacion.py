@@ -58,9 +58,22 @@ def texto():
 while running: 
     # Color de Background
     screen.fill('#DCDDD8')
-
+    # Event Handler
+    # Bucle que escucha el evento de QUIT 
+    # de la ventana y del SPACE para iniciar el juego
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                game_start = True
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if Button_Option.Click():
+                game_option = True
+            if Button_Back.Click():
+                game_option = False
     # Main Menu     
-    if Button_Option.pressed == False and game_start == False:
+    if game_option == False and game_start == False:
         # Estados de la Celulas. Vivos = 1, Muertos = 0
         gameState = np.zeros((ncX, ncY))
         # Iniciamos algunas Celulas para probar su comportamiento
@@ -82,7 +95,7 @@ while running:
         pass
 
     # Menu Opciones
-    elif Button_Option.pressed == True:
+    if game_option == True:
         # Dibujamos el Boton de Atras en 
         # el menu de opciones
         Button_Classic.draw(screen)
@@ -91,30 +104,17 @@ while running:
         if Button_Classic.pressed:
             game_classic = True
         # Codicion para regresar al Main Menu
-        if Button_Back.pressed == True: 
-            Button_Option.pressed = False
-            Button_Back.pressed = False
         pass
 
     # Juego
-    elif game_start == True:
+    if game_start == True:
         # Le damos un Delay
-        time.sleep(0.0459)
+        time.sleep(0.045)
         # Dibujamos los botones para Pausar 
         # y salir
         Button_Paused.draw(screen)
         Button_Exit.draw(screen)
         # Condicion para salir al Main Menu
-        if Button_Exit.checked_click() == True:
-            game_start = False
-            game_paused = False
-            Button_Paused = texto()
-        if Button_Paused.pressed: 
-            if game_paused==False:
-                game_paused = True
-            elif game_paused:
-                game_paused = False
-            Button_Paused = texto() 
         # Bucle que escucha los eventos de click del 
         # mouse en la Pantalla
         for event in pygame.event.get():
@@ -128,7 +128,20 @@ while running:
                 celX, celY = int(np.floor(posX / dimCW)), int(np.floor(posY / dimCH)) 
                 # Cambiamos el estado de la cedula
                 newGameState[celX, celY] = 1
-          
+        
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if Button_Exit.Click():
+                    game_start = False
+                if Button_Paused.Click():
+                    if game_paused==False:
+                        game_paused = True
+                    elif game_paused:
+                        game_paused = False
+                    Button_Paused = texto()
+            
+            if event.type == pygame.QUIT:
+                running = False
+            
         # Bucle para escribir las celdas en pantalla
         for y in range(2, ncX-10):
             for x in range(2, ncY-2):
@@ -166,15 +179,6 @@ while running:
         gameState = np.copy(newGameState)
         pass
 
-    # Event Handler
-    # Bucle que escucha el evento de QUIT 
-    # de la ventana y del SPACE para iniciar el juego
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                game_start = True
 
     #Actualizacion de Display
     pygame.display.update()
