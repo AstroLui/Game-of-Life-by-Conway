@@ -145,6 +145,8 @@ while running:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if Button_Exit.Click():
                     game_start = False
+                    game_paused = False
+                    Button_Paused = texto()
                 if Button_Paused.Click():
                     if game_paused==False:
                         game_paused = True
