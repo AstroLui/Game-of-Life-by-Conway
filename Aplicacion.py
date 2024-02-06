@@ -39,10 +39,12 @@ Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6)
     #Widgets de Inicio del Juego
 Button_Exit = Button('Atras', 100, 50, (20, 520), font_widgets, 6)
 Button_Paused = Button('Pausar', 125, 50, (315, 520), font_widgets, 6)
+Button_Classic = Button('Clásico', 125, 50, (315, 520), font_widgets, 6)
 #Game Variables
 game_option = False
 game_start = False
 game_paused = False
+game_classic = False
 ncX, ncY = 50, 50
 dimCW = SCREEN_WIDTH / ncX
 dimCH = SCREEN_HEIGHT / ncY
@@ -83,7 +85,11 @@ while running:
     elif Button_Option.pressed == True:
         # Dibujamos el Boton de Atras en 
         # el menu de opciones
+        Button_Classic.draw(screen)
         Button_Back.draw(screen)
+
+        if Button_Classic.pressed:
+            game_classic = True
         # Codicion para regresar al Main Menu
         if Button_Back.pressed == True: 
             Button_Option.pressed = False
