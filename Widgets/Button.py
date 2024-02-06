@@ -40,13 +40,15 @@ class Button():
             if pygame.mouse.get_pressed()[0]:
                 self.dinamyc_elevation = 0
                 self.pressed = True
-                return True
             else:
                 self.dinamyc_elevation = self.evelation
                 if self.pressed == True: 
-                    print('Click')
                     self.pressed = False
         else:
             self.dinamyc_elevation = self.evelation
             self.top_color = 'white'
-            
+    
+    def Click(self):
+        moused_pos = pygame.mouse.get_pos()
+        if moused_pos[0] in range(self.top_rect.left, self.top_rect.right) and moused_pos[1] in range(self.top_rect.top, self.top_rect.bottom):
+            return True
