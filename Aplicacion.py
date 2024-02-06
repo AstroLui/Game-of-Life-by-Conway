@@ -111,6 +111,16 @@ while running:
         # Condicion para salir al Main Menu
 
 
+        if Button_Exit.checked_click() == True:
+            game_start = False
+            game_paused = False
+            Button_Paused = texto()
+        if Button_Paused.pressed: 
+            if game_paused==False:
+                game_paused = True
+            elif game_paused:
+                game_paused = False
+            Button_Paused = texto() 
         # Bucle que escucha los eventos de click del 
         # mouse en la Pantalla
         for event in pygame.event.get():
