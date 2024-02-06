@@ -40,11 +40,13 @@ Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6)
 Button_Exit = Button('Atras', 100, 50, (20, 520), font_widgets, 6)
 Button_Paused = Button('Pausar', 125, 50, (315, 520), font_widgets, 6)
 Button_Classic = Button('Clásico', 125, 50, (315, 520), font_widgets, 6)
+Button_Red = Button('Rojo', 125, 50, (315, 400), font_widgets, 6)
 #Game Variables
 game_option = False
 game_start = False
 game_paused = False
 game_classic = False
+game_red = False
 ncX, ncY = 50, 50
 dimCW = SCREEN_WIDTH / ncX
 dimCH = SCREEN_HEIGHT / ncY
@@ -54,6 +56,14 @@ def texto():
         return Button('Continuar', 150, 50, (315, 520), font_widgets, 6)
      else:
          return Button('Pausar', 125, 50, (315, 520), font_widgets, 6)
+
+def color():
+    if game_classic:
+        return '#000000'
+    elif game_red:
+        return "#f20c0c"
+    else:
+        return '#000000'
 #Game Loop
 while running: 
     # Color de Background
@@ -100,9 +110,12 @@ while running:
         # el menu de opciones
         Button_Classic.draw(screen)
         Button_Back.draw(screen)
+        Button_Red.draw(screen)
 
         if Button_Classic.pressed:
             game_classic = True
+        if Button_Red.pressed:
+            game_red = True
         # Codicion para regresar al Main Menu
         pass
 
@@ -169,10 +182,11 @@ while running:
                         ((x)     * dimCW, (y + 1) * dimCH)]
                 
                 # Dibujamos la celda
-                if newGameState[x, y] == 0: 
+                if newGameState[x, y] == 0:
+                    Tcolor = color() 
                     pygame.draw.polygon(screen, '#606060', poly, 1)
                 else:
-                    pygame.draw.polygon(screen, '#000000', poly, 0)
+                    pygame.draw.polygon(screen, Tcolor, poly, 0)
         
         # Al final de bucle actualizaremos el estado de todas 
         # las celdas al mismo tiempo
