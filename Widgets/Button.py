@@ -41,7 +41,7 @@ class Button():
                 self.dinamyc_elevation = 0
                 self.pressed = True
             else:
-                self.dinamyc_elevation = self.evelation
+                self.dinamyc_elevation = self.evelation 
                 if self.pressed == True: 
                     self.pressed = False
         else:
@@ -52,6 +52,3 @@ class Button():
         moused_pos = pygame.mouse.get_pos()
         if moused_pos[0] in range(self.top_rect.left, self.top_rect.right) and moused_pos[1] in range(self.top_rect.top, self.top_rect.bottom):
             return True
-
-    def setTextColor(self, color: str):
-        self.TextColor = color

@@ -3,7 +3,7 @@ import numpy as np
 import time
 from Widgets.Button import *
 from Widgets.Text import *
-from Widgets.ButtonImage import *
+from Widgets.ButtonToggle import *
 
 #Iniciacion de Pygame
 pygame.init()
@@ -28,7 +28,7 @@ font_copy = pygame.font.Font('Fonts/Pixelinter.ttf', 14)
 
 #Widgets
     #Widgets de la Pantalla Principal
-Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets, 6,)
+Button_Option = Button('Opciones', 250, 50, (260, 400), font_widgets, 6)
 TitleCenter = Text('Juego de la Vida', font, '#000000', 75, 150)
 SubTitle = Text('de Conway', font_other, '#000000', 90, 190)
 StartText = Text('Presione SPACE para comenzar', font_other, '#000000', 110, 340)
@@ -37,11 +37,11 @@ CopyText_By = Text('By AstroLui and Moi', font_copy, '#000000', 650, 570)
     #Widgets de las Opciones
 Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6,)
 Text_ColorCell = Text('Cambiar Color de la Celula', font_textplano, '#000000', 30, 100)
-Button_Classic = Button('Clásico', 125, 50, (50, 150), font_widgets, 6)
-Button_Red = Button('Rojo', 125, 50, (190, 150), font_widgets, 6)
-Button_Azul = Button('Azul', 125, 50, (330, 150), font_widgets, 6)
-Button_Verde = Button('Verde', 125, 50, (470, 150), font_widgets, 6)
-Button_Astro = Button('Astro', 125, 50, (610, 150), font_widgets, 6)
+Button_Classic = ButtonToggle('Clásico', 125, 50, (50, 150), font_widgets, 6, False)
+Button_Red = ButtonToggle('Rojo', 125, 50, (190, 150), font_widgets, 6, False)
+Button_Azul = ButtonToggle('Azul', 125, 50, (330, 150), font_widgets, 6, False)
+Button_Verde = ButtonToggle('Verde', 125, 50, (470, 150), font_widgets, 6, False)
+Button_Astro = ButtonToggle('Astro', 125, 50, (610, 150), font_widgets, 6, False)
     #Widgets de Inicio del Juego
 Button_Exit = Button('Atras', 100, 50, (20, 520), font_widgets, 6,)
 Button_Paused = Button('Pausar', 125, 50, (315, 520), font_widgets, 6,)
