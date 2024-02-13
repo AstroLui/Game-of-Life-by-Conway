@@ -42,21 +42,16 @@ Button_Classic = ButtonToggle('Clásico', 125, 50, (50, 150), font_widgets, 6, F
 Button_Red = ButtonToggle('Rojo', 125, 50, (190, 150), font_widgets, 6, False)
 Button_Azul = ButtonToggle('Azul', 125, 50, (330, 150), font_widgets, 6, False)
 Button_Verde = ButtonToggle('Verde', 125, 50, (470, 150), font_widgets, 6, False)
-Button_Astro = ButtonToggle('Astro', 125, 50, (610, 150), font_widgets, 6, False)
 Button_FigClassic = ButtonToggle('Básico', 125, 50, (50, 300), font_widgets, 6, False)
-Button_FigParpadeo = ButtonToggle('Parpadeo', 125, 50, (190, 300), font_widgets, 6, False)
-Button_Planeador = ButtonToggle('Planeador', 125, 50, (330, 300), font_widgets, 6, False)
-Button_Reina = ButtonToggle('Reina', 125, 50, (470, 300), font_widgets, 6, False)
-Button_Bellota = ButtonToggle('Bellota', 125, 50, (610, 300), font_widgets, 6, False)
+Button_FigParpadeo = ButtonToggle('Parpadeo', 140, 50, (185, 300), font_widgets, 6, False)
+Button_Planeador = ButtonToggle('Planeador', 160, 50, (335, 300), font_widgets, 6, False)
+Button_Reina = ButtonToggle('Reina', 125, 50, (505, 300), font_widgets, 6, False)
+Button_Bellota = ButtonToggle('Bellota', 125, 50, (645, 300), font_widgets, 6, False)
     #Widgets de Inicio del Juego
 Button_Exit = Button('Atras', 100, 50, (20, 520), font_widgets, 6,)
 Button_Paused = Button('Pausar', 125, 50, (315, 520), font_widgets, 6,)
 
-figura_base = False
-figura_parpadeo = False
-figura_planeador = False
-figura_reina = False
-figura_bellota = False
+
 def texto():
      if game_paused:
         return Button('Continuar', 150, 50, (315, 520), font_widgets, 6,)
@@ -72,12 +67,10 @@ def Colors():
         return '#5754A8'
     elif game_verde:
         return '#A5CC1B'
-    elif game_astro: 
-        return '#54526A'
     else:
         return '#000000'
 
-def figura():
+def Figuras():
     if figura_base:
         gameState[21, 21] = 1
         gameState[22, 22] = 1
@@ -142,14 +135,19 @@ game_option = False
 game_start = False
 game_paused = False
     #Variables de Colores
-game_classic = False
+game_classic = True
+Button_Classic.Toggle = True
 game_red = False
 game_azul = False
 game_verde = False
-game_astro = False
-game_secret = False
-
-ncX, ncY = 50, 50
+    #Variables de las formas
+figura_base = True
+Button_FigClassic.Toggle = True
+figura_parpadeo = False
+figura_planeador = False
+figura_reina = False
+figura_bellota = False
+ncX, ncY = 80, 80
 dimCW = SCREEN_WIDTH / ncX
 dimCH = SCREEN_HEIGHT / ncY
 
@@ -157,8 +155,6 @@ dimCH = SCREEN_HEIGHT / ncY
 while running: 
     # Color de Background
     screen.fill('#DCDDD8')
-    if game_astro == True: 
-        screen.fill('#9EABCF')
     # Event Handler
     # Bucle que escucha el evento de QUIT 
     # de la ventana y del SPACE para iniciar el juego
@@ -178,74 +174,91 @@ while running:
                 game_red =  False
                 game_azul = False
                 game_verde = False
-                game_astro = False
-                game_secret = False
+                Button_Red.Toggle = False
+                Button_Azul.Toggle = False
+                Button_Verde.Toggle = False
             if Button_Red.Click():
                 game_red = True
                 game_classic = False
                 game_azul = False
                 game_verde=  False
-                game_astro = False
-                game_secret = False
+                Button_Classic.Toggle = False
+                Button_Azul.Toggle = False
+                Button_Verde.Toggle = False
             if Button_Azul.Click():
                 game_red = False
                 game_classic = False
                 game_azul = True
                 game_verde = False
-                game_astro = False
-                game_secret = False
+                Button_Classic.Toggle = False
+                Button_Verde.Toggle = False
+                Button_Red.Toggle = False
             if Button_Verde.Click():
                 game_red = False
                 game_classic = False
                 game_azul = False
                 game_verde = True
-                game_astro = False
-                game_secret = False
-            if Button_Astro.Click():
-                game_red = False
-                game_classic = False
-                game_azul = False
-                game_verde = False
-                game_astro = True
-                game_secret = True
+                Button_Classic.Toggle = False
+                Button_Azul.Toggle = False
+                Button_Red.Toggle = False
+
             if Button_FigClassic.Click():
                 figura_base = True
                 figura_parpadeo = False
                 figura_planeador = False
                 figura_reina = False
                 figura_bellota = False
+                Button_FigParpadeo.Toggle = False
+                Button_Planeador.Toggle = False
+                Button_Reina.Toggle = False
+                Button_Bellota.Toggle = False
             if Button_FigParpadeo.Click():
                 figura_base = False
                 figura_parpadeo = True
                 figura_planeador = False
                 figura_reina = False
                 figura_bellota = False
+                Button_FigClassic.Toggle = False
+                Button_Planeador.Toggle = False
+                Button_Reina.Toggle = False
+                Button_Bellota.Toggle = False
             if Button_Planeador.Click():
                 figura_base = False
                 figura_parpadeo = False
                 figura_planeador = True
                 figura_reina = False
                 figura_bellota = False
+                Button_FigParpadeo.Toggle = False
+                Button_FigClassic.Toggle = False
+                Button_Reina.Toggle = False
+                Button_Bellota.Toggle = False
             if Button_Reina.Click():
                 figura_base = False
                 figura_parpadeo = False
                 figura_planeador = False
                 figura_reina = True
                 figura_bellota = False
+                Button_FigParpadeo.Toggle = False
+                Button_Planeador.Toggle = False
+                Button_FigClassic.Toggle = False
+                Button_Bellota.Toggle = False
             if Button_Bellota.Click():
                 figura_base = False
                 figura_parpadeo = False
                 figura_planeador = False
                 figura_reina = False
                 figura_bellota = True
-
+                Button_FigParpadeo.Toggle = False
+                Button_Planeador.Toggle = False
+                Button_Reina.Toggle = False
+                Button_FigClassic.Toggle = False
 
     # Main Menu     
     if game_option == False and game_start == False:
         # Estados de la Celulas. Vivos = 1, Muertos = 0
         gameState = np.zeros((ncX, ncY))
         # Iniciamos algunas Celulas para probar su comportamiento
-        figura()
+        Figuras()
         # Copiamos gameState, esta lista es donde haremos
         # los cambios
         newGameState = np.copy(gameState)
@@ -269,7 +282,6 @@ while running:
         Button_Red.draw(screen)
         Button_Azul.draw(screen)
         Button_Verde.draw(screen)
-        Button_Astro.draw(screen)
         Button_FigClassic.draw(screen)
         Button_FigParpadeo.draw(screen)
         Button_Planeador.draw(screen)
@@ -320,7 +332,7 @@ while running:
                 running = False
             
         # Bucle para escribir las celdas en pantalla
-        for y in range(2, ncX-10):
+        for y in range(2, ncX-14):
             for x in range(2, ncY-2):
                 if not game_paused:
                     # Determinamos los vecinos cercanos de cada celda 
@@ -336,11 +348,13 @@ while running:
                     #Regla 1: Una celda muerta con exactamente 3 vecinas vivas, "revive"
                     if gameState[x, y] == 0 and n_Neigh == 3: 
                         newGameState[x, y] = 1
-                        pygame.draw.polygon(screen, '#008F39', poly, 0)
+                        if game_classic:
+                            pygame.draw.polygon(screen, '#008F39', poly, 0)
                     #Regla 2: Una celda viva con menos de 2 o más de 3 celdas vivas alrededor muere.
                     elif gameState[x, y] == 1 and (n_Neigh < 2 or n_Neigh > 3): 
                         newGameState[x, y] = 0
-                        pygame.draw.polygon(screen, '#FF0000', poly, 0)
+                        if game_classic:
+                            pygame.draw.polygon(screen, '#FF0000', poly, 0)
                 # Creamos el poligono para dibujar la celda
                 poly = [((x)     * dimCW, y       * dimCH),  
                         ((x + 1) * dimCW, y       * dimCH), 
