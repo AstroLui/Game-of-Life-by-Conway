@@ -37,16 +37,26 @@ CopyText_By = Text('By AstroLui and Moi', font_copy, '#000000', 650, 570)
     #Widgets de las Opciones
 Button_Back = Button('Atras', 100, 50, (20, 20), font_widgets, 6,)
 Text_ColorCell = Text('Cambiar Color de la Celula', font_textplano, '#000000', 30, 100)
+Text_Figura = Text('Cambiar Figura', font_textplano, '#000000', 30, 250)
 Button_Classic = ButtonToggle('Clásico', 125, 50, (50, 150), font_widgets, 6, False)
 Button_Red = ButtonToggle('Rojo', 125, 50, (190, 150), font_widgets, 6, False)
 Button_Azul = ButtonToggle('Azul', 125, 50, (330, 150), font_widgets, 6, False)
 Button_Verde = ButtonToggle('Verde', 125, 50, (470, 150), font_widgets, 6, False)
 Button_Astro = ButtonToggle('Astro', 125, 50, (610, 150), font_widgets, 6, False)
+Button_FigClassic = ButtonToggle('Básico', 125, 50, (50, 300), font_widgets, 6, False)
+Button_FigParpadeo = ButtonToggle('Parpadeo', 125, 50, (190, 300), font_widgets, 6, False)
+Button_Planeador = ButtonToggle('Planeador', 125, 50, (330, 300), font_widgets, 6, False)
+Button_Reina = ButtonToggle('Reina', 125, 50, (470, 300), font_widgets, 6, False)
+Button_Bellota = ButtonToggle('Bellota', 125, 50, (610, 300), font_widgets, 6, False)
     #Widgets de Inicio del Juego
 Button_Exit = Button('Atras', 100, 50, (20, 520), font_widgets, 6,)
 Button_Paused = Button('Pausar', 125, 50, (315, 520), font_widgets, 6,)
 
-
+figura_base = False
+figura_parpadeo = False
+figura_planeador = False
+figura_reina = False
+figura_bellota = False
 def texto():
      if game_paused:
         return Button('Continuar', 150, 50, (315, 520), font_widgets, 6,)
@@ -66,6 +76,66 @@ def Colors():
         return '#54526A'
     else:
         return '#000000'
+
+def figura():
+    if figura_base:
+        gameState[21, 21] = 1
+        gameState[22, 22] = 1
+        gameState[22, 23] = 1
+        gameState[21, 23] = 1
+        gameState[20, 23] = 1
+    if figura_parpadeo:
+        gameState[21, 21] = 1
+        gameState[22, 21] = 1
+        gameState[23, 21] = 1
+    if figura_planeador:
+        gameState[20, 21] = 1
+        gameState[20, 22] = 1
+        gameState[21, 22] = 1
+        gameState[22, 22] = 1
+        gameState[22, 23] = 1
+    if figura_reina:
+        gameState[2, 1] = 1
+        gameState[2, 2] = 1
+        gameState[3, 0] = 1
+        gameState[3, 1] = 1
+        gameState[3, 2] = 1
+        gameState[4, 0] = 1
+        gameState[4, 2] = 1
+        gameState[5, 1] = 1
+        gameState[6, 0] = 1
+        gameState[6, 2] = 1
+        gameState[7, 1] = 1
+        gameState[9, 0] = 1
+        gameState[9, 3] = 1
+        gameState[10, 0] = 1
+        gameState[10, 2] = 1
+        gameState[10, 3] = 1
+        gameState[11, 1] = 1
+        gameState[12, 0] = 1
+        gameState[12, 2] = 1
+        gameState[12, 3] = 1
+        gameState[13, 1] = 1
+        gameState[14, 0] = 1
+        gameState[14, 2] = 1
+        gameState[14, 3] = 1
+        gameState[15, 1] = 1
+        gameState[16, 1] = 1
+    if figura_bellota:
+        gameState[1, 0] = 1
+        gameState[2, 0] = 1
+        gameState[3, 1] = 1
+        gameState[4, 0] = 1
+        gameState[5, 0] = 1
+        gameState[6, 1] = 1
+    else:
+        gameState[21, 21] = 1
+        gameState[22, 22] = 1
+        gameState[22, 23] = 1
+        gameState[21, 23] = 1
+        gameState[20, 23] = 1
+
+
 
 #Game Variables
 game_option = False
@@ -138,17 +208,44 @@ while running:
                 game_verde = False
                 game_astro = True
                 game_secret = True
+            if Button_FigClassic.Click():
+                figura_base = True
+                figura_parpadeo = False
+                figura_planeador = False
+                figura_reina = False
+                figura_bellota = False
+            if Button_FigParpadeo.Click():
+                figura_base = False
+                figura_parpadeo = True
+                figura_planeador = False
+                figura_reina = False
+                figura_bellota = False
+            if Button_Planeador.Click():
+                figura_base = False
+                figura_parpadeo = False
+                figura_planeador = True
+                figura_reina = False
+                figura_bellota = False
+            if Button_Reina.Click():
+                figura_base = False
+                figura_parpadeo = False
+                figura_planeador = False
+                figura_reina = True
+                figura_bellota = False
+            if Button_Bellota.Click():
+                figura_base = False
+                figura_parpadeo = False
+                figura_planeador = False
+                figura_reina = False
+                figura_bellota = True
+
 
     # Main Menu     
     if game_option == False and game_start == False:
         # Estados de la Celulas. Vivos = 1, Muertos = 0
         gameState = np.zeros((ncX, ncY))
         # Iniciamos algunas Celulas para probar su comportamiento
-        gameState[21, 21] = 1
-        gameState[22, 22] = 1
-        gameState[22, 23] = 1
-        gameState[21, 23] = 1
-        gameState[20, 23] = 1
+        figura()
         # Copiamos gameState, esta lista es donde haremos
         # los cambios
         newGameState = np.copy(gameState)
@@ -166,12 +263,18 @@ while running:
         # Dibujamos el Boton de Atras en 
         # el menu de opciones
         Text_ColorCell.Draw(screen)
+        Text_Figura.Draw(screen)
         Button_Classic.draw(screen)
         Button_Back.draw(screen)
         Button_Red.draw(screen)
         Button_Azul.draw(screen)
         Button_Verde.draw(screen)
         Button_Astro.draw(screen)
+        Button_FigClassic.draw(screen)
+        Button_FigParpadeo.draw(screen)
+        Button_Planeador.draw(screen)
+        Button_Reina.draw(screen)
+        Button_Bellota.draw(screen)
         # Codicion para regresar al Main Menu
         pass
 
