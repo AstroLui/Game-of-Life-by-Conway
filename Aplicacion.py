@@ -43,9 +43,9 @@ Button_Azul = ButtonToggle('Azul', 125, 50, (330, 150), font_widgets, 6, False)
 Button_Verde = ButtonToggle('Verde', 125, 50, (470, 150), font_widgets, 6, False)
 Button_FigClassic = ButtonToggle('Básico', 125, 50, (50, 300), font_widgets, 6, False)
 Button_FigParpadeo = ButtonToggle('Parpadeo', 140, 50, (185, 300), font_widgets, 6, False)
-Button_Planeador = ButtonToggle('Planeador', 160, 50, (335, 300), font_widgets, 6, False)
-Button_Reina = ButtonToggle('Reina', 125, 50, (505, 300), font_widgets, 6, False)
-Button_Bellota = ButtonToggle('Bellota', 125, 50, (645, 300), font_widgets, 6, False)
+Button_Daga = ButtonToggle('Daga', 125, 50, (335, 300), font_widgets, 6, False)
+Button_Reina = ButtonToggle('Reina', 125, 50, (470, 300), font_widgets, 6, False)
+Button_Pollo = ButtonToggle('Pollo', 125, 50, (610, 300), font_widgets, 6, False)
     #Widgets de Inicio del Juego
 Button_Exit = Button('Atras', 100, 50, (20, 520), font_widgets, 6,)
 Button_Paused = Button('Pausar', 125, 50, (315, 520), font_widgets, 6,)
@@ -77,54 +77,140 @@ def Figuras():
         gameState[21, 23] = 1
         gameState[20, 23] = 1
     if figura_parpadeo:
-        gameState[21, 21] = 1
-        gameState[22, 21] = 1
-        gameState[23, 21] = 1
-    if figura_planeador:
-        gameState[20, 21] = 1
-        gameState[20, 22] = 1
+        gameState[35, 21] = 1
+        gameState[35, 22] = 1
+        gameState[35, 23] = 1
+        gameState[35, 24] = 1
+        gameState[35, 25] = 1
+    if figura_daga:
+        gameState[34, 22] = 1
+        gameState[33, 23] = 1
+        gameState[34, 24] = 1
+        gameState[35, 23] = 1
+        gameState[36, 24] = 1
+        gameState[36, 25] = 1
+        gameState[37, 27] = 1
+        gameState[38, 26] = 1
+        gameState[39, 26] = 1
+        gameState[39, 27] = 1
+        gameState[36, 28] = 1
+        gameState[35, 28] = 1
+        gameState[34, 28] = 1
+        gameState[33, 28] = 1
+        gameState[32, 28] = 1
+        gameState[31, 27] = 1
+        gameState[32, 26] = 1
+        gameState[32, 25] = 1
+        gameState[32, 24] = 1
+        gameState[34, 26] = 1
+        gameState[29, 26] = 1
+        gameState[29, 27] = 1
+        gameState[34, 30] = 1
+        gameState[35, 31] = 1
+        gameState[33, 31] = 1
+        gameState[30, 26] = 1
+        gameState[34, 32] = 1
+        gameState[36, 26] = 1
+    if figura_reina:
+        gameState[21, 18] = 1
+        gameState[22, 18] = 1
+        gameState[21, 19] = 1
+        gameState[22, 19] = 1
         gameState[21, 22] = 1
         gameState[22, 22] = 1
+        gameState[21, 23] = 1
         gameState[22, 23] = 1
-    if figura_reina:
-        gameState[2, 1] = 1
-        gameState[2, 2] = 1
-        gameState[3, 0] = 1
-        gameState[3, 1] = 1
-        gameState[3, 2] = 1
-        gameState[4, 0] = 1
-        gameState[4, 2] = 1
-        gameState[5, 1] = 1
-        gameState[6, 0] = 1
-        gameState[6, 2] = 1
-        gameState[7, 1] = 1
-        gameState[9, 0] = 1
-        gameState[9, 3] = 1
-        gameState[10, 0] = 1
-        gameState[10, 2] = 1
-        gameState[10, 3] = 1
-        gameState[11, 1] = 1
-        gameState[12, 0] = 1
-        gameState[12, 2] = 1
-        gameState[12, 3] = 1
-        gameState[13, 1] = 1
-        gameState[14, 0] = 1
-        gameState[14, 2] = 1
-        gameState[14, 3] = 1
-        gameState[15, 1] = 1
-        gameState[16, 1] = 1
-    if figura_bellota:
-        gameState[1, 0] = 1
-        gameState[2, 0] = 1
-        gameState[3, 1] = 1
-        gameState[4, 0] = 1
-        gameState[5, 0] = 1
-        gameState[6, 1] = 1
+        gameState[24, 16] = 1
+        gameState[24, 17] = 1
+        gameState[24, 18] = 1
+        gameState[24, 19] = 1
+        gameState[24, 20] = 1
+        gameState[24, 21] = 1
+        gameState[24, 22] = 1
+        gameState[24, 23] = 1
+        gameState[24, 24] = 1
+        gameState[24, 25] = 1
+        gameState[25, 26] = 1
+        gameState[26, 26] = 1
+        gameState[26, 25] = 1
+        gameState[25, 15] = 1
+        gameState[26, 16] = 1
+        gameState[26, 15] = 1
+        gameState[26, 16] = 1
+        gameState[26, 19] = 1
+        gameState[26, 20] = 1
+        gameState[26, 21] = 1
+        gameState[26, 22] = 1
+
+        gameState[28, 20] = 1
+        gameState[28, 21] = 1
+        gameState[29, 22] = 1
+        gameState[30, 22] = 1
+        gameState[31, 21] = 1
+        gameState[31, 20] = 1
+        gameState[30, 19] = 1
+        gameState[29, 19] = 1
+
+        gameState[33, 19] = 1
+        gameState[33, 20] = 1
+        gameState[33, 21] = 1
+        gameState[33, 22] = 1
+        gameState[33, 25] = 1
+        gameState[33, 26] = 1
+        gameState[34, 26] = 1
+        gameState[35, 25] = 1
+        gameState[35, 24] = 1
+        gameState[35, 23] = 1
+        gameState[35, 22] = 1
+        gameState[35, 21] = 1
+        gameState[35, 20] = 1
+        gameState[35, 19] = 1
+        gameState[35, 18] = 1
+        gameState[35, 17] = 1
+        gameState[35, 16] = 1
+        gameState[34, 15] = 1
+        gameState[33, 15] = 1
+        gameState[33, 16] = 1
+        gameState[37, 18] = 1
+        gameState[38, 18] = 1
+        gameState[38, 19] = 1
+        gameState[37, 19] = 1
+        gameState[37, 22] = 1
+        gameState[38, 22] = 1
+        gameState[38, 23] = 1
+        gameState[37, 23] = 1
+    if figura_pollo:
+        gameState[28, 25] = 1
+        gameState[28, 26] = 1
+        gameState[29, 26] = 1
+        gameState[29, 27] = 1
+        gameState[29, 28] = 1
+        gameState[30, 29] = 1
+        gameState[31, 29] = 1
+        gameState[32, 29] = 1
+        gameState[33, 30] = 1
+        gameState[32, 31] = 1
+        gameState[32, 32] = 1
+        gameState[34, 29] = 1
+        gameState[34, 28] = 1
+        gameState[34, 27] = 1
+        gameState[34, 26] = 1
+        gameState[33, 26] = 1
+        gameState[31, 27] = 1
+        gameState[31, 26] = 1
+        gameState[31, 24] = 1
+        gameState[31, 25] = 1
+        gameState[30, 24] = 1
+        gameState[36, 28] = 1
+        gameState[37, 28] = 1
+        gameState[37, 29] = 1
+        gameState[36, 29] = 1
+        gameState[33, 32] = 1
 
 #Game Variables
 game_option = False
 game_start = False
-game_paused = False
+game_paused = True
     #Variables de Colores
 game_classic = True
 Button_Classic.Toggle = True
@@ -135,9 +221,9 @@ game_verde = False
 figura_base = True
 Button_FigClassic.Toggle = True
 figura_parpadeo = False
-figura_planeador = False
+figura_daga = False
 figura_reina = False
-figura_bellota = False
+figura_pollo = False
 ncX, ncY = 70, 70
 dimCW = SCREEN_WIDTH / ncX
 dimCH = SCREEN_HEIGHT / ncY
@@ -190,9 +276,9 @@ while running:
         Button_Verde.draw(screen)
         Button_FigClassic.draw(screen)
         Button_FigParpadeo.draw(screen)
-        Button_Planeador.draw(screen)
+        Button_Daga.draw(screen)
         Button_Reina.draw(screen)
-        Button_Bellota.draw(screen)
+        Button_Pollo.draw(screen)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -235,51 +321,51 @@ while running:
                 if Button_FigClassic.Click():
                     figura_base = True
                     figura_parpadeo = False
-                    figura_planeador = False
+                    figura_daga = False
                     figura_reina = False
                     figura_bellota = False
                     Button_FigParpadeo.Toggle = False
-                    Button_Planeador.Toggle = False
+                    Button_Daga.Toggle = False
                     Button_Reina.Toggle = False
-                    Button_Bellota.Toggle = False
+                    Button_Pollo.Toggle = False
                 if Button_FigParpadeo.Click():
                     figura_base = False
                     figura_parpadeo = True
-                    figura_planeador = False
+                    figura_daga = False
                     figura_reina = False
-                    figura_bellota = False
+                    figura_pollo = False
                     Button_FigClassic.Toggle = False
-                    Button_Planeador.Toggle = False
+                    Button_Daga.Toggle = False
                     Button_Reina.Toggle = False
-                    Button_Bellota.Toggle = False
-                if Button_Planeador.Click():
+                    Button_Pollo.Toggle = False
+                if Button_Daga.Click():
                     figura_base = False
                     figura_parpadeo = False
-                    figura_planeador = True
+                    figura_daga = True
                     figura_reina = False
-                    figura_bellota = False
+                    figura_pollo = False
                     Button_FigParpadeo.Toggle = False
                     Button_FigClassic.Toggle = False
                     Button_Reina.Toggle = False
-                    Button_Bellota.Toggle = False
+                    Button_Pollo.Toggle = False
                 if Button_Reina.Click():
                     figura_base = False
                     figura_parpadeo = False
-                    figura_planeador = False
+                    figura_daga = False
                     figura_reina = True
-                    figura_bellota = False
+                    figura_pollo = False
                     Button_FigParpadeo.Toggle = False
-                    Button_Planeador.Toggle = False
+                    Button_Daga.Toggle = False
                     Button_FigClassic.Toggle = False
-                    Button_Bellota.Toggle = False
-                if Button_Bellota.Click():
+                    Button_Pollo.Toggle = False
+                if Button_Pollo.Click():
                     figura_base = False
                     figura_parpadeo = False
-                    figura_planeador = False
+                    figura_daga = False
                     figura_reina = False
-                    figura_bellota = True
+                    figura_pollo = True
                     Button_FigParpadeo.Toggle = False
-                    Button_Planeador.Toggle = False
+                    Button_Daga.Toggle = False
                     Button_Reina.Toggle = False
                     Button_FigClassic.Toggle = False
         # Codicion para regresar al Main Menu
