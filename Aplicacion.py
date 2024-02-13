@@ -147,7 +147,7 @@ figura_parpadeo = False
 figura_planeador = False
 figura_reina = False
 figura_bellota = False
-ncX, ncY = 80, 80
+ncX, ncY = 70, 70
 dimCW = SCREEN_WIDTH / ncX
 dimCH = SCREEN_HEIGHT / ncY
 
@@ -349,12 +349,12 @@ while running:
                     if gameState[x, y] == 0 and n_Neigh == 3: 
                         newGameState[x, y] = 1
                         if game_classic:
-                            pygame.draw.polygon(screen, '#008F39', poly, 0)
+                            pygame.draw.polygon(screen, '#50ca80', poly, 0)
                     #Regla 2: Una celda viva con menos de 2 o más de 3 celdas vivas alrededor muere.
                     elif gameState[x, y] == 1 and (n_Neigh < 2 or n_Neigh > 3): 
                         newGameState[x, y] = 0
                         if game_classic:
-                            pygame.draw.polygon(screen, '#FF0000', poly, 0)
+                            pygame.draw.polygon(screen, '#c85656', poly, 0)
                 # Creamos el poligono para dibujar la celda
                 poly = [((x)     * dimCW, y       * dimCH),  
                         ((x + 1) * dimCW, y       * dimCH), 
