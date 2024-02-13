@@ -7,7 +7,6 @@ from Widgets.ButtonToggle import *
 
 #Iniciacion de Pygame
 pygame.init()
-
 #Screen de la Pantalla
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -121,14 +120,6 @@ def Figuras():
         gameState[4, 0] = 1
         gameState[5, 0] = 1
         gameState[6, 1] = 1
-    else:
-        gameState[21, 21] = 1
-        gameState[22, 22] = 1
-        gameState[22, 23] = 1
-        gameState[21, 23] = 1
-        gameState[20, 23] = 1
-
-
 
 #Game Variables
 game_option = False
@@ -155,106 +146,11 @@ dimCH = SCREEN_HEIGHT / ncY
 while running: 
     # Color de Background
     screen.fill('#DCDDD8')
-    # Event Handler
     # Bucle que escucha el evento de QUIT 
     # de la ventana y del SPACE para iniciar el juego
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                game_start = True
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if Button_Option.Click():
-                game_option = True
-            if Button_Back.Click():
-                game_option = False
-            if Button_Classic.Click():
-                game_classic = True
-                game_red =  False
-                game_azul = False
-                game_verde = False
-                Button_Red.Toggle = False
-                Button_Azul.Toggle = False
-                Button_Verde.Toggle = False
-            if Button_Red.Click():
-                game_red = True
-                game_classic = False
-                game_azul = False
-                game_verde=  False
-                Button_Classic.Toggle = False
-                Button_Azul.Toggle = False
-                Button_Verde.Toggle = False
-            if Button_Azul.Click():
-                game_red = False
-                game_classic = False
-                game_azul = True
-                game_verde = False
-                Button_Classic.Toggle = False
-                Button_Verde.Toggle = False
-                Button_Red.Toggle = False
-            if Button_Verde.Click():
-                game_red = False
-                game_classic = False
-                game_azul = False
-                game_verde = True
-                Button_Classic.Toggle = False
-                Button_Azul.Toggle = False
-                Button_Red.Toggle = False
-
-            if Button_FigClassic.Click():
-                figura_base = True
-                figura_parpadeo = False
-                figura_planeador = False
-                figura_reina = False
-                figura_bellota = False
-                Button_FigParpadeo.Toggle = False
-                Button_Planeador.Toggle = False
-                Button_Reina.Toggle = False
-                Button_Bellota.Toggle = False
-            if Button_FigParpadeo.Click():
-                figura_base = False
-                figura_parpadeo = True
-                figura_planeador = False
-                figura_reina = False
-                figura_bellota = False
-                Button_FigClassic.Toggle = False
-                Button_Planeador.Toggle = False
-                Button_Reina.Toggle = False
-                Button_Bellota.Toggle = False
-            if Button_Planeador.Click():
-                figura_base = False
-                figura_parpadeo = False
-                figura_planeador = True
-                figura_reina = False
-                figura_bellota = False
-                Button_FigParpadeo.Toggle = False
-                Button_FigClassic.Toggle = False
-                Button_Reina.Toggle = False
-                Button_Bellota.Toggle = False
-            if Button_Reina.Click():
-                figura_base = False
-                figura_parpadeo = False
-                figura_planeador = False
-                figura_reina = True
-                figura_bellota = False
-                Button_FigParpadeo.Toggle = False
-                Button_Planeador.Toggle = False
-                Button_FigClassic.Toggle = False
-                Button_Bellota.Toggle = False
-            if Button_Bellota.Click():
-                figura_base = False
-                figura_parpadeo = False
-                figura_planeador = False
-                figura_reina = False
-                figura_bellota = True
-                Button_FigParpadeo.Toggle = False
-                Button_Planeador.Toggle = False
-                Button_Reina.Toggle = False
-                Button_FigClassic.Toggle = False
-
     # Main Menu     
     if game_option == False and game_start == False:
+        pygame.display.set_caption('Game of Life | Menu')
         # Estados de la Celulas. Vivos = 1, Muertos = 0
         gameState = np.zeros((ncX, ncY))
         # Iniciamos algunas Celulas para probar su comportamiento
@@ -269,10 +165,20 @@ while running:
         Button_Option.draw(screen)
         CopyText.Draw(screen)
         CopyText_By.Draw(screen)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    game_start = True
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if Button_Option.Click():
+                    game_option = True
         pass
 
     # Menu Opciones
     if game_option == True:
+        pygame.display.set_caption('Game of Life | Opciones')
         # Dibujamos el Boton de Atras en 
         # el menu de opciones
         Text_ColorCell.Draw(screen)
@@ -287,13 +193,101 @@ while running:
         Button_Planeador.draw(screen)
         Button_Reina.draw(screen)
         Button_Bellota.draw(screen)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if Button_Back.Click():
+                    game_option = False
+                if Button_Classic.Click():
+                    game_classic = True
+                    game_red =  False
+                    game_azul = False
+                    game_verde = False
+                    Button_Red.Toggle = False
+                    Button_Azul.Toggle = False
+                    Button_Verde.Toggle = False
+                if Button_Red.Click():
+                    game_red = True
+                    game_classic = False
+                    game_azul = False
+                    game_verde=  False
+                    Button_Classic.Toggle = False
+                    Button_Azul.Toggle = False
+                    Button_Verde.Toggle = False
+                if Button_Azul.Click():
+                    game_red = False
+                    game_classic = False
+                    game_azul = True
+                    game_verde = False
+                    Button_Classic.Toggle = False
+                    Button_Verde.Toggle = False
+                    Button_Red.Toggle = False
+                if Button_Verde.Click():
+                    game_red = False
+                    game_classic = False
+                    game_azul = False
+                    game_verde = True
+                    Button_Classic.Toggle = False
+                    Button_Azul.Toggle = False
+                    Button_Red.Toggle = False
+                if Button_FigClassic.Click():
+                    figura_base = True
+                    figura_parpadeo = False
+                    figura_planeador = False
+                    figura_reina = False
+                    figura_bellota = False
+                    Button_FigParpadeo.Toggle = False
+                    Button_Planeador.Toggle = False
+                    Button_Reina.Toggle = False
+                    Button_Bellota.Toggle = False
+                if Button_FigParpadeo.Click():
+                    figura_base = False
+                    figura_parpadeo = True
+                    figura_planeador = False
+                    figura_reina = False
+                    figura_bellota = False
+                    Button_FigClassic.Toggle = False
+                    Button_Planeador.Toggle = False
+                    Button_Reina.Toggle = False
+                    Button_Bellota.Toggle = False
+                if Button_Planeador.Click():
+                    figura_base = False
+                    figura_parpadeo = False
+                    figura_planeador = True
+                    figura_reina = False
+                    figura_bellota = False
+                    Button_FigParpadeo.Toggle = False
+                    Button_FigClassic.Toggle = False
+                    Button_Reina.Toggle = False
+                    Button_Bellota.Toggle = False
+                if Button_Reina.Click():
+                    figura_base = False
+                    figura_parpadeo = False
+                    figura_planeador = False
+                    figura_reina = True
+                    figura_bellota = False
+                    Button_FigParpadeo.Toggle = False
+                    Button_Planeador.Toggle = False
+                    Button_FigClassic.Toggle = False
+                    Button_Bellota.Toggle = False
+                if Button_Bellota.Click():
+                    figura_base = False
+                    figura_parpadeo = False
+                    figura_planeador = False
+                    figura_reina = False
+                    figura_bellota = True
+                    Button_FigParpadeo.Toggle = False
+                    Button_Planeador.Toggle = False
+                    Button_Reina.Toggle = False
+                    Button_FigClassic.Toggle = False
         # Codicion para regresar al Main Menu
         pass
 
     # Juego
     if game_start == True:
-        # Le damos un Delay
-        time.sleep(0.045)
+        pygame.display.set_caption('Game of Life | Juego')
         # Dibujamos los botones para Pausar 
         # y salir
         Button_Paused.draw(screen)
@@ -330,7 +324,8 @@ while running:
             
             if event.type == pygame.QUIT:
                 running = False
-            
+        # Le damos un Delay
+        time.sleep(0.045)
         # Bucle para escribir las celdas en pantalla
         for y in range(2, ncX-14):
             for x in range(2, ncY-2):
