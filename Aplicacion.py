@@ -210,7 +210,7 @@ def Figuras():
 #Game Variables
 game_option = False
 game_start = False
-game_paused = True
+game_paused = False
     #Variables de Colores
 game_classic = True
 Button_Classic.Toggle = True
